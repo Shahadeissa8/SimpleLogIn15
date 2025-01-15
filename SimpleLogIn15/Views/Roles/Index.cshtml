@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Role>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1>Roles</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>@Html.DisplayNameFor(x=>x.RoleId)</th>
+        <th>@Html.DisplayNameFor(x=>x.RoleName)</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.RoleId</td>
+            <td>@item.RoleName</td>
+        </tr>
+    }
+</table>
+<a asp-action="Index" asp-controller="Account" class="btn btn-primary">View Users</a>

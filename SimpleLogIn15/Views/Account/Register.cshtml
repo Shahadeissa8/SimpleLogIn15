@@ -1,0 +1,54 @@
+﻿@model UserViewModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<form asp-action="Register" asp-controller="Account" method="post">
+	<table class="table table-bordered">
+		<tr>
+			<th><label asp-for="UserName"></label></th>
+			<td>
+				<input asp-for="UserName" />
+				<span asp-validation-for="UserName" class="text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="UserEmail"></label></th>
+			<td>
+				<input asp-for="UserEmail" />
+				<span asp-validation-for="UserEmail" class="text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="UserPassword"></label></th>
+			<td>
+				<input asp-for="UserPassword" />
+				<span asp-validation-for="UserPassword" class="text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="ConfirmUserPassword"></label></th>
+			<td>
+				<input asp-for="ConfirmUserPassword" />
+				<span asp-validation-for="ConfirmUserPassword" class="text-danger"></span>
+			</td>
+		</tr>
+		<tr>
+			<th><label asp-for="RoleId"></label></th>
+			<td>
+				<select asp-for="RoleId" class="from-control" asp-items="ViewBag.Ro">
+					<option value="-1">-----Select your role-----</option>
+				</select>
+			</td>
+		</tr>
+			<td colspan="2">
+				<input class="btn btn-primary" type="submit" value="save" />
+			</td>
+			<td><a asp-action="Index" class="btn btn-danger">Cancel</a></td>
+		</tr>
+
+	</table>
+</form>
+
