@@ -12,7 +12,7 @@ namespace SimpleLogIn15.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Roles.ToList());
+            return View(_context.Roles);
         }
     }
 }
