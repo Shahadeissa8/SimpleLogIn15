@@ -18,9 +18,10 @@ namespace SimpleLogIn15.Controllers
         public IActionResult Home()
         {
             return View();
-        }public IActionResult Index()
+        }
+        public IActionResult Index()
         {
-            return View(_context.Users.ToList());
+            return View(_context.Users);
         }
         public IActionResult Register()
         {
@@ -41,9 +42,10 @@ namespace SimpleLogIn15.Controllers
                 };
                 _context.Users.Add(user);
                 _context.SaveChanges();
-                return RedirectToAction("LogIn", "Account");
+                return RedirectToAction(nameof(LogIn));
             }
             ViewBag.Ro = new SelectList(_context.Roles, "RoleId", "RoleName");
+            //important because we want it to show in the second time we refresh or enter invalid data
             return View(reg);
         }
         public IActionResult LogIn()
@@ -53,18 +55,23 @@ namespace SimpleLogIn15.Controllers
         [HttpPost]
         public IActionResult LogIn(string UserEmail, string UserPassword)
         {
-            var userData = _context.Users.FirstOrDefault(x => x.UserEmail == UserEmail);
-            if (userData!=null && userData.UserPassword==UserPassword)
+            if (ModelState.IsValid)
             {
-                return View(nameof(LogInSuccessful));
+                var userData = _context.Users.FirstOrDefault(x => x.UserEmail == UserEmail);
+                if (userData != null && userData.UserPassword == UserPassword)
+                {
+                    return View(nameof(LogInSuccessful));
+                }
+
+                return View(nameof(NoAccess));
             }
-            return View(nameof(NoAccess));
+            return View();
         }
-        public IActionResult LogInSuccessful() 
+        public IActionResult LogInSuccessful()
         {
-            return RedirectToAction("Users", "Account");
+            return View();
         }
-        public IActionResult NoAccess() 
+        public IActionResult NoAccess()
         {
             return View();
         }

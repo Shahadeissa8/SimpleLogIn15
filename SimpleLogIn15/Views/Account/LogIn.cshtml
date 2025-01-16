@@ -11,10 +11,14 @@
 		<tr>
 			<td><label asp-for="UserEmail"></label></td>
 			<td><input asp-for="UserEmail" /></td>
+			<td><span asp-validation-for="UserEmail" class="text-danger"></span></td>
+
 		</tr>
 		<tr>
 			<td><label asp-for="UserPassword"></label></td>
 			<td><input asp-for="UserPassword" /></td>
+			<td><span asp-validation-for="UserPassword" class="text-danger"></span></td>
+
 		</tr>
 		<tr>
 			<td colspan="2">
